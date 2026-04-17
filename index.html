@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baza Kart Charakterystyki ENPROM</title>
+    <style>
+        :root {
+            --primary: #0078d4;
+            --danger: #d13438;
+            --bg: #f3f2f1;
+            --text: #323130;
+            --de-color: #ffcc00; /* Kolor dla wersji DE */
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+        .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
+        
+        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 15px; border: 2px solid #a4262c; }
+
+        .search-box { width: 100%; box-sizing: border-box; padding: 15px; margin-bottom: 15px; border: 2px solid var(--primary); border-radius: 8px; font-size: 16px; outline: none; }
+        
+        /* Styl produktu */
+        .product-card { background: #fff; border: 1px solid #edebe9; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+        .product-header { padding: 12px; font-weight: 600; background: #faf9f8; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        
+        .lang-options { display: none; padding: 10px; background: #fff; }
+        .product-card.active .lang-options { display: block; }
+        .product-card.active .arrow { transform: rotate(180deg); }
+
+        .download-link { display: flex; align-items: center; padding: 10px; text-decoration: none; color: var(--text); border-radius: 6px; margin-bottom: 5px; transition: background 0.2s; border: 1px solid #eee; }
+        .download-link:hover { background: #f3f2f1; }
+        
+        .flag { margin-right: 10px; font-size: 18px; }
+        .lang-text { flex-grow: 1; font-size: 14px; }
+        .pdf-label { font-size: 10px; background: var(--danger); color: white; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        
+        .ufi-info { font-size: 11px; color: #605e5c; padding: 0 12px 10px; font-family: monospace; }
+        .arrow { transition: transform 0.3s; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
+
+        <input type="text" id="search" class="search-box" placeholder="Szukaj produktu (np. Olej)...">
+
+        <div id="product-list">
+            
+            <div class="product-card">
+                <div class="product-header" onclick="this.parentElement.classList.toggle('active')">
+                    <span>1. Olej napędowy (ON) / Diesel</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="lang-options">
+                    <a href="LINK_DO_POLSKIEGO_PDF" class="download-link" target="_blank">
+                        <span class="flag">🇵🇱</span>
+                        <span class="lang-text">Pobierz Kartę Charakterystyki (PL)</span>
+                        <span class="pdf-label">PDF</span>
+                    </a>
+                    <a href="LINK_DO_NIEMIECKIEGO_PDF" class="download-link" target="_blank">
+                        <span class="flag">🇩🇪</span>
+                        <span class="lang-text">Sicherheitsdatenblatt herunterladen (DE)</span>
+                        <span class="pdf-label">PDF</span>
+                    </a>
+                </div>
+                <div class="ufi-info">
+                    UFI: A830-6020-C002-Y1UR / JS30-706D-6001-X3C4
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <script>
+        // Prosta wyszukiwarka
+        document.getElementById('search').addEventListener('input', function(e) {
+            let filter = e.target.value.toLowerCase();
+            let cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                let text = card.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
