@@ -15,40 +15,36 @@
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; }
         .app-container { width: 100%; max-width: 550px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); box-sizing: border-box; }
         
-        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 16px; border-radius: 8px; font-weight: bold; font-size: 18px; margin-bottom: 15px; border: 2px solid #a4262c; }
-        .search-box { width: 100%; box-sizing: border-box; padding: 15px; margin-bottom: 15px; border: 2px solid var(--primary); border-radius: 8px; font-size: 16px; outline: none; }
+        .emergency-btn { background: var(--danger); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 16px; margin-bottom: 15px; border: 2px solid #a4262c; }
+        .search-box { width: 100%; box-sizing: border-box; padding: 12px; margin-bottom: 15px; border: 2px solid var(--primary); border-radius: 8px; font-size: 15px; outline: none; }
         
-        .product-card { background: #fff; border: 1px solid #edebe9; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
-        .product-header { padding: 12px; font-weight: 600; background: #faf9f8; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        /* Karta produktu - mniejsza i bez interakcji kliknięcia */
+        .product-card { background: #fff; border: 1px solid #edebe9; border-radius: 8px; margin-bottom: 12px; padding: 10px; }
+        .product-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: block; border-bottom: 1px solid #f3f2f1; padding-bottom: 5px; }
         
-        /* Kontener na przyciski obok siebie */
-        .lang-grid { display: none; padding: 10px; gap: 10px; flex-wrap: wrap; }
-        .product-card.active .lang-grid { display: flex; }
-        .product-card.active .arrow { transform: rotate(180deg); }
+        /* Kontener na przyciski - zawsze widoczny */
+        .lang-grid { display: flex; gap: 8px; }
 
         .btn-lang { 
-            flex: 1; /* Sprawia, że oba mają tę samą szerokość */
-            min-width: 120px; 
+            flex: 1; 
             display: flex; 
-            flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding: 12px 5px; 
+            padding: 8px 4px; 
             text-decoration: none; 
             color: var(--text); 
             border: 1px solid #ddd; 
-            border-radius: 8px; 
-            transition: background 0.2s; 
-            text-align: center;
+            border-radius: 6px; 
+            background: #faf9f8;
+            transition: all 0.2s;
         }
-        .btn-lang:hover { background: #f3f2f1; border-color: var(--primary); }
+        .btn-lang:active { background: #eee; transform: scale(0.98); }
         
-        .flag { font-size: 24px; margin-bottom: 5px; }
-        .btn-label { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-        .pdf-tag { font-size: 9px; background: var(--danger); color: white; padding: 1px 4px; border-radius: 3px; }
+        .flag { font-size: 18px; margin-right: 6px; }
+        .btn-label { font-size: 12px; font-weight: 600; }
         
-        .ufi-info { font-size: 10px; color: #605e5c; padding: 0 12px 10px; font-family: monospace; }
-        .arrow { transition: transform 0.3s; }
+        .ufi-info { font-size: 9px; color: #605e5c; margin-top: 8px; font-family: monospace; line-height: 1.2; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -56,25 +52,20 @@
     <div class="app-container">
         <a href="tel:112" class="emergency-btn">🆘 RATOWNICTWO: 112</a>
 
-        <input type="text" id="search" class="search-box" placeholder="Szukaj produktu (np. Olej)...">
+        <input type="text" id="search" class="search-box" placeholder="Szukaj produktu lub UFI...">
 
         <div id="product-list">
             
             <div class="product-card">
-                <div class="product-header" onclick="this.parentElement.classList.toggle('active')">
-                    <span>1. Olej napędowy (ON) / Diesel</span>
-                    <span class="arrow">▼</span>
-                </div>
+                <span class="product-title">1. Olej napędowy (ON) / Diesel - ORLEN</span>
                 <div class="lang-grid">
-                    <a href="LINK_DO_PL" class="btn-lang" target="_blank">
+                    <a href="https://enprom365.sharepoint.com/:b:/s/M365_Ochronarodowiska/IQAkuT3PIebERJqxqZaBgMAwAZSWfYQKqdbbfdGSMLqkUcM?e=QJCfR5" class="btn-lang" target="_blank">
                         <span class="flag">🇵🇱</span>
-                        <span class="btn-label">Pobierz (PL)</span>
-                        <span class="pdf-tag">PDF</span>
+                        <span class="btn-label">PL (Pobierz)</span>
                     </a>
-                    <a href="LINK_DO_DE" class="btn-lang" target="_blank">
+                    <a href="LINK_DO_DE_SHAREPOINT" class="btn-lang" target="_blank">
                         <span class="flag">🇩🇪</span>
-                        <span class="btn-label">SDB (DE)</span>
-                        <span class="pdf-tag">PDF</span>
+                        <span class="btn-label">DE (SDB)</span>
                     </a>
                 </div>
                 <div class="ufi-info">
@@ -82,7 +73,7 @@
                 </div>
             </div>
 
-        </div>
+            </div>
     </div>
 
     <script>
@@ -91,7 +82,11 @@
             let cards = document.querySelectorAll('.product-card');
             cards.forEach(card => {
                 let text = card.textContent.toLowerCase();
-                card.style.display = text.includes(filter) ? "block" : "none";
+                if (text.includes(filter)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
             });
         });
     </script>
